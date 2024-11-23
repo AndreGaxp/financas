@@ -12,14 +12,16 @@ function AuthProvider({ children }) {
 
   const navigation = useNavigation();
 
-  async function SignUp(nome, email, senha, ) {
+  async function signUp(nome, email, password) {
+    console.log(email, nome, password)
+    
     try{
       const response = await api.post('/users', {
         name: nome,
-        password: senha,
+        password: password,
         email: email,
       })
-
+      console.log('response => ', response)
       navigation.goBack();
 
     }catch(err){
@@ -28,7 +30,7 @@ function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, SignUp }}>
+    <AuthContext.Provider value={{ user, signUp }}>
       {children}
     </AuthContext.Provider>
   )

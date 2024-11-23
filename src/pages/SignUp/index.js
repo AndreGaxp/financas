@@ -8,13 +8,13 @@ import { AuthContext } from '../../contexts/auth';
 
 export default function SignUp() {
 
-  const { SignUp } = useContext(AuthContext)
+  const { signUp } = useContext(AuthContext)
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
-  const [senha, setSenha] = useState('')
+  const [password, setPassword] = useState('')
 
   function handleSignUp() {
-    SignUp(email, senha, nome);
+    signUp(email, password, nome);
   }
 
   return (
@@ -40,8 +40,8 @@ export default function SignUp() {
         <AreaInput>
           <Input
             placeholder='Sua senha'
-            value={senha}
-            onChangeText={(text) => setSenha(text)}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
             secureTextEntry={true}
           />
         </AreaInput>
