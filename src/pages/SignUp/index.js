@@ -15,7 +15,7 @@ export default function SignUp() {
 
   function handleSignUp() {
     if(nome === '' || email === "" || password === '') return;
-    signUp(email, password, nome);
+    signUp(nome, email, password);
   }
 
   return (
