@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
       navigation.goBack();
 
     }catch(err){
-      console.log('ERRO AO TENTAR CADASTRAR', err)
+      console.log('ERRO AO TENTAR CADASTRAR. ERRO:', err)
       setLoadingAuth(false)
     }
   }
