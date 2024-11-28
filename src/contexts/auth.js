@@ -24,13 +24,42 @@ function AuthProvider({ children }) {
       navigation.goBack();
 
     }catch(err){
-      console.log('ERRO AO TENTAR CADASTRAR. ERRO:', err)
+      console.log('ERRO AO TENTAR CADASTRAR, ERRO:', err)
       setLoadingAuth(false)
     }
   }
 
   async function signIn(email, password) {
-    console.log('EMAIL TESTE: ', email)
+    setLoadingAuth(true)
+    try{
+      const response = await api.post('/login', {
+        email: email,
+        password: password
+      })
+
+      const {id, name, token} = response.data
+
+      const data = {
+        id, 
+        name,
+        token,
+        email
+      }
+
+      api.defaults.headers['Authorization'] = `Bearer ${token}`
+
+      setUser({
+        id,
+        name,
+        email
+      })
+
+      setLoadingAuth(false)
+
+    }catch(err){
+      console.log('ERRO AO TENTAR CADASTRAR, ERRO:', err)
+      setLoadingAuth(false)
+    }
     
   }
 
