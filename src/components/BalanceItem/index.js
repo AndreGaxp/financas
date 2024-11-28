@@ -15,7 +15,7 @@ export default function BalanceItem({ data }) {
       }
     } else {
       return {
-        label: 'Saldo atual',
+        label: 'Despesas',
         color: 'ef463a'
       }
     }
