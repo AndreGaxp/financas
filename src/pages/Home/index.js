@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Modal } from 'react-native';
 
 import { AuthContext } from '../../contexts/auth';
 
@@ -18,6 +18,7 @@ import { format } from 'date-fns';
 import { useIsFocused } from '@react-navigation/native';
 import BalanceItem from '../../components/BalanceItem';
 import HistoricoList from '../../components/HistoricoList';
+import CalendarModal from '../../components/CalendarModal';
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -25,6 +26,7 @@ export default function Home() {
   const isFocused = useIsFocused()
   const [listBalance, setListBalance] = useState([])
   const [movements, setMovements] = useState([])
+  const [modalVisible, setModalVisible] = useState(false)
 
   const [dateMovements, setDateMovements] = useState(new Date())
 
@@ -75,6 +77,10 @@ export default function Home() {
     }
   }
 
+  function filterDateMovements(dateSelected){
+    setDateMovements(dateSelected)
+  }
+
   return (
     <Background>
       <Header title='Minhas Movimentações' />
@@ -88,7 +94,7 @@ export default function Home() {
       />
 
       <Area>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
           <Icon name='event' color='#121212' size={35} />
         </TouchableOpacity>
         <Title>Ultimas movimentações</Title>
@@ -100,6 +106,14 @@ export default function Home() {
         renderItem={({ item }) => <HistoricoList data={item} deleteItem={handleDelete} />}
         showsVerticalScrollIndicator={false}
       />
+
+      <Modal visible={modalVisible} animationType='fade' transparent={true}>
+        <CalendarModal
+        setVisible={() => setModalVisible(false)}
+        handleFilter={filterDateMovements}
+        />
+      </Modal>
+
     </Background>
   );
 }
