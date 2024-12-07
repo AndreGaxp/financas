@@ -7,25 +7,25 @@ export default function RegisterTypes({ type, sendTypeChanged }) {
 
   function changeType(name) {
     if (name === 'receita') {
-      setTypeChecked('receita')
-      sendTypeChanged('receita')
+      setTypeChecked('Receita')
+      sendTypeChanged('Receita')
     }else{
-      setTypeChecked('despesa')
-      sendTypeChanged('despesa')
+      setTypeChecked('Despesa')
+      sendTypeChanged('Despesa')
     }
   }
 
 
   return (
     <RegisterContainer>
-      <RegisterTypeButton checked={typeChecked === 'receita' ? true : false} onPress={() => changeType('receita')}>
+      <RegisterTypeButton checked={typeChecked === 'Receita' ? true : false} onPress={() => changeType('Receita')}>
         <Feather name='arrow-up' size={25} color="#121212" />
         <RegisterLabel>
           Receita
         </RegisterLabel>
       </RegisterTypeButton>
 
-      <RegisterTypeButton checked={typeChecked === 'despesa' ? true : false} onPress={() => changeType('despesa')}>
+      <RegisterTypeButton checked={typeChecked === 'Despesa' ? true : false} onPress={() => changeType('Despesa')}>
         <Feather name='arrow-down' size={25} color="#121212" />
         <RegisterLabel>
           Despesa
